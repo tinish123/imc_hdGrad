@@ -6,6 +6,17 @@ This repo contains the codes and data required to produce results in [1].
 
 ## Getting Started
 
+### System Requirements
+
+- Since the code is not optimized for efficient usage, it is recommended to have a computer with at least 16 GB of RAM, 4 cores and 3.3 GHz/core. WalkSAT simulations for larger problems N>50 would benefit from even larger number of cores.
+- All codes have been tested on Linux operating systems.
+- Install Jupyter Notebook and set up Python3 runtime environment if not done already.
+- Make sure to have the following dependencies installed:
+    - numPy
+    - matplotlib
+    - pickle
+    - futures  
+
 ### Installation
 
     git clone https://github.com/tinish123/imc_hdGrad.git
@@ -22,7 +33,11 @@ Code to download the remaining 3-SAT instances:
     tar xvf *.gz
     cd ..
 
-### Description
+### Usage
+
+After downloading the remaining SAT instances, open up any of the python notebooks. Go through the markdown documentation in each notebook, specify the required load, save and sat directories and then execute the cells as per need.
+
+## Description
 
 - The ***sat*** directory contains all the 3-SAT instances that are required for simulations. The randomly generated 14-variable 64-clause 3-SAT instances used for Fig. 5 and Fig. S21 of Supplementary Information, are already provided in the sat directory. All other required instances for N = 20, 50, 75 and 100, need to be downloaded. It also contains the following additional SAT instances: (A) with N=14, M=64 but varying values of k: *uf_k3_14_64.cnf*, *uf_k4_14_64.cnf*, *uf_k5_14_64.cnf*, *uf_k6_14_64.cnf*, *uf_k7_14_64.cnf*, *uf_k8_14_64.cnf*, *uf_k9_14_64.cnf* and *uf_k10_14_64.cnf*, used for SPICE simulations in Fig. S13-S14, and (B) with K=3, M=64 but varying values of N: *uf_k3_6_64.cnf*, *uf_k3_8_64.cnf* and *uf_k3_11_64.cnf*, used for SPICE simulations in Fig. S15. Note that the instance *uf_k3_14_64.cnf* is also the one used for the experiment and results in Fig. 3 of main text.
 - ***data*** directory where all the break and gain-value error models (generated from SPICE simulations pertaining to Fig. S17-S18 of Supplementary File), TTS and run-length data (generated from error-model incorporated WalkSAT/SKC and HO-HNN simulations pertaining to Fig. 5 of main text and FIg. S21 of Supplementary File) and custom polynomial file for real-valued gradient computation demonstration are stored.

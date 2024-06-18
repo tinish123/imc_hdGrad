@@ -255,7 +255,6 @@ def WalkSat_Solver_full(nvar,i,params):
 def get_kSATprob(sat_dir,nvar,instance):
     
     if nvar==20:
-        dir_name = 'uf20-91'
         instance_name = 'uf20-0'+str(instance)
         line_start = 8
         k = 3
@@ -264,7 +263,6 @@ def get_kSATprob(sat_dir,nvar,instance):
             print("Instance Number not present in Instance Directory!!")
             sys.exit()
     elif nvar==14:
-        dir_name = 'uf14-64'
         instance_name = 'uf14-0'+str(instance)
         line_start = 1
         k = 3
@@ -273,7 +271,6 @@ def get_kSATprob(sat_dir,nvar,instance):
             print("Instance Number not present in Instance Directory!!")
             sys.exit()
     elif nvar==50:
-        dir_name = 'uf50-218'
         instance_name = 'uf50-0'+str(instance)
         line_start = 8
         k = 3
@@ -282,7 +279,6 @@ def get_kSATprob(sat_dir,nvar,instance):
             print("Instance Number not present in Instance Directory!!")
             sys.exit()
     elif nvar==75:
-        dir_name = 'uf75-325'
         instance_name = 'uf75-0'+str(instance)
         line_start = 8
         k = 3
@@ -291,7 +287,6 @@ def get_kSATprob(sat_dir,nvar,instance):
             print("Instance Number not present in Instance Directory!!")
             sys.exit()
     elif nvar==100:
-        dir_name = 'uf100-430'
         instance_name = 'uf100-0'+str(instance)
         line_start = 8
         k = 3
@@ -300,7 +295,6 @@ def get_kSATprob(sat_dir,nvar,instance):
             print("Instance Number not present in Instance Directory!!")
             sys.exit()
     elif nvar==150:
-        dir_name = 'uf150-645'
         instance_name = 'uf150-0'+str(instance)
         line_start = 8
         k = 3
@@ -309,7 +303,6 @@ def get_kSATprob(sat_dir,nvar,instance):
             print("Instance Number not present in Instance Directory!!")
             sys.exit()
     elif nvar==200:
-        dir_name = 'uf200-860'
         instance_name = 'uf200-0'+str(instance)
         line_start = 8
         k = 3
@@ -318,7 +311,6 @@ def get_kSATprob(sat_dir,nvar,instance):
             print("Instance Number not present in Instance Directory!!")
             sys.exit()
     elif nvar==225:
-        dir_name = 'uf225-960'
         instance_name = 'uf225-0'+str(instance)
         line_start = 8
         k = 3
@@ -327,7 +319,6 @@ def get_kSATprob(sat_dir,nvar,instance):
             print("Instance Number not present in Instance Directory!!")
             sys.exit()
     elif nvar==250:
-        dir_name = 'uf250-1065'
         instance_name = 'uf250-0'+str(instance)
         line_start = 8
         k = 3
@@ -336,7 +327,6 @@ def get_kSATprob(sat_dir,nvar,instance):
             print("Instance Number not present in Instance Directory!!")
             sys.exit()
     else:
-        dir_name = 'uf20-91'
         instance_name = 'uf20-0'+str(instance)
         line_start = 8
         k = 3
@@ -346,7 +336,8 @@ def get_kSATprob(sat_dir,nvar,instance):
             sys.exit()
     
     
-    file_addr = sat_dir+dir_name+'/'+instance_name+'.cnf'
+    #file_addr = sat_dir+dir_name+'/'+instance_name+'.cnf'
+    file_addr = sat_dir+'/'+instance_name+'.cnf'
     
     with open(file_addr) as f:
         lines = f.readlines()

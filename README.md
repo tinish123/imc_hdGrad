@@ -51,7 +51,10 @@ After downloading the remaining SAT instances, open up any of the python noteboo
 - *real_valued_gradient.ipynb* that contains (i) sample code to run the model for the real-valued gradient computing hardware for a single variable vector, (ii) code to generate Fig. S24 of Supplementary File and (iii) code to explore tradeoff between monomial coefficient precision and maximum order (K) that can be implemented.
 - The *custom4_4.poly* file in the ***data*** directory is a compact representation of the polynomial considered in Fig. S23 of Supplementary File. First row is the header and the last two numbers denote the values of N and M respectively. Each subsequent row corresponds to a monomial. All numbers before the '0' represent the indices of variables that are part of the product of the monomial and the number right after the '0' represents the coefficient. The last zero of the file is to be ignored.
 
+## Description
 
-### Contact
+Distributed under the MIT License. See LICENSE.txt for more information.
+
+## Contact
 
 Tinish Bhattacharya (tinish@ucsb.edu, mymail.tinishbhat@gmail.com)

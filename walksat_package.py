@@ -199,6 +199,62 @@ def clausemat2cnfmat(clause_mat):
             
     return cnfmat
 
+def get_optMaxflips(max_flips,full_data_arr,p_targ):
+    
+    max_restarts = full_data_arr.shape[1]
+    temp_rl_data = full_data_arr.flatten()
+    temp_rl_data = np.unique(np.sort(temp_rl_data))
+    temp_rl_data = temp_rl_data[np.where(temp_rl_data>0)]
+    temp_rl_data = temp_rl_data[np.where(temp_rl_data<max_flips)]
+    max_flips_opt = 0
+    tts_opt = 10*max_flips
+    for j in range(temp_rl_data.shape[0]):
+        max_flip_temp = temp_rl_data[j]
+        sr_arr_temp = np.zeros((full_data_arr.shape[0],1))
+        tts_arr_temp = np.zeros((full_data_arr.shape[0],1))
+        for k in range(full_data_arr.shape[0]):
+            sr_arr_temp[k,0] = len(np.where(full_data_arr[k,]<=max_flip_temp)[0])/max_restarts
+            if sr_arr_temp[k,0]==0:
+                break
+            if sr_arr_temp[k,0]<p_targ:
+                tts_arr_temp[k,0] = max_flip_temp*(math.log((1-p_targ),10)/math.log((1-sr_arr_temp[k,0]),10))
+            else:
+                modified_rl_arr = full_data_arr[k,np.where(full_data_arr[k,]!=max_flips)[0]]
+                sorted_arr = modified_rl_arr[modified_rl_arr.argsort()]
+                ind_tts = math.ceil(p_targ*max_restarts)-1
+                tts_arr_temp[k,0] = sorted_arr[ind_tts]
+        if len(np.where(tts_arr_temp==0)[0])==0:
+            if np.median(tts_arr_temp) < tts_opt:
+                tts_opt = np.median(tts_arr_temp)
+                max_flips_opt = max_flip_temp
+            
+    return max_flips_opt
+
+def revData_with_optMaxflips(max_flips_opt,full_data_arr,p_targ):
+    
+    num_instances = full_data_arr.shape[0]
+    max_restarts = full_data_arr.shape[1]
+    instance_stat = np.zeros((num_instances,4))
+    
+    for k in range(num_instances):
+        sr_new = len(np.where(full_data_arr[k,]<=max_flips_opt)[0])/max_restarts
+        af_new = np.mean(full_data_arr[k,np.where(full_data_arr[k,]<=max_flips_opt)[0]])
+        mr_new = af_new+((1-sr_new)/sr_new)*max_flips_opt
+
+        if sr_new<p_targ:
+            tts_new = max_flips_opt*(math.log((1-p_targ),10)/math.log((1-sr_new),10))
+        else:
+            modified_rl_arr = full_data_arr[k,np.where(full_data_arr[k,]<=max_flips_opt)[0]]
+            sorted_arr = modified_rl_arr[modified_rl_arr.argsort()]
+            ind_tts = math.ceil(p_targ*max_restarts)-1
+            tts_new = sorted_arr[ind_tts]
+            
+        instance_stat[k,0] = tts_new
+        instance_stat[k,1] = af_new
+        instance_stat[k,2] = sr_new
+        instance_stat[k,3] = mr_new
+        
+    return instance_stat
 
 def WalkSat_Solver(p,clause_mat,max_iter,max_flips,err_map):
     

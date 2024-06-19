@@ -8,7 +8,8 @@ This repo contains the codes and data required to produce results in [1].
 
 ### System Requirements
 
-- Since the code is not optimized for efficient usage, it is recommended to have a computer with at least 16 GB of RAM, 4 cores and 3.3 GHz/core. WalkSAT simulations for larger problems N>50 would benefit from even larger number of cores.
+- Since the code is not optimized for efficient usage, it is recommended to have a computer with at least 16 GB of RAM, 4 cores and 3.3 GHz/core. WalkSAT simulations for larger problems N>50 would benefit significantly from even larger number of cores.
+- All simulations for [1] were done on a server grade AMD EPYC 7373X 16-Core Processor (with 2 sockets) and ~ 1TB RAM. The time to run WalkSAT/SKC (ideal case) on 80 instances of N=20 uniform random 3-SAT problems with MAX_ITER = 500, MAX_FLIPS = 10,000 and p = 0.35 was ~55 seconds.
 - All codes have been tested on Linux operating systems.
 - Install Jupyter Notebook and set up Python3 runtime environment if not done already.
 - Make sure to have the following dependencies installed:
